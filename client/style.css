@@ -1,0 +1,27 @@
+
+
+.world_map {
+    background: url("./world_map.jpg") repeat-x;
+    background-size: 750px;
+    width: 7680px;
+    height: 500px;
+    animation: slide 45s linear infinite;
+    margin-bottom: 0%;
+  }
+
+.world_map_container {
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  /* references https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
+  @keyframes slide {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-3840px); /* The image width */
+    }
+  }
+
+  

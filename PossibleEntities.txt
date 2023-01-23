@@ -1,0 +1,9 @@
+Possible JSON entity formats:
+
+{
+    "cities":[
+        {"name":"Cape Town", "continent":"Africa", "country":"South Africa", "sites":["Table Mountain", "V&A Waterfront", "Boulders Beach"]},
+        {"name":"Rome", "continent":"Europe", "country":"Italy"},
+        {"name":"Cairo", "continent":"Africa", "country":"Egypt"}
+    ]
+}

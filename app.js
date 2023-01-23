@@ -22,8 +22,10 @@ app.get('/cities', function(req, resp) {
 }) */
 
 /* List cities for a continent */
-app.get('/cities', function(req, resp){
-    const citiesText = Object.keys(cities);
+app.get('/africanCities', function(req, resp){ 
+    const city = cities["Africa"];
+    /* const citiesText = city[0]["Africa"]; */
+    const citiesText = city["South Africa"];
     resp.send(citiesText);
 })
 

@@ -1,8 +1,8 @@
-[
-        {"Africa": [{"name":"Cairo", "country":"Egypt"}, {"name":"Cape Town", "country":"South Africa"}]},
-        {"Europe": [{"name":"Rome", "country":"Italy"}]},
-        {"Asia": [{"name":"Tokyo", "country":"Japan"}]},
-        {"North America": [{"name":"San Francisco", "country":"California"}]},
-        {"South Ameria": [{"name":"Rio de Janeiro", "country":"Brazil"}]},
-        {"Australia": [{"name":"Sydney", "country":"New South Wales"}]}
-]
+{
+    "Africa": {"Egypt":["Cairo"], "South Africa":["Cape Town", "Johannesburg"]},
+    "Europe": {"Italy":["Rome"]},
+    "Asia": {"Japan":["Tokyo"]},
+    "North America": {"California":["San Fransisco"]},
+    "South Ameria": {"Brazil":["Rio de Janeiro"]}, 
+    "Australia": {"New South Wales":["Sydney"]}
+}

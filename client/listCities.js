@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', listCity);
 let african_cities = document.getElementById('african_cities');
 
 function addButton() {
-african_cities.addEventListener('click', async function listCities (event){ /*event*/
-    const cityResponse = await fetch(`http://127.0.0.1:8090/cities`);
+african_cities.addEventListener('click', async function listCities (event){ 
+    const cityResponse = await fetch(`http://127.0.0.1:8090/africanCities`);
     let body = await cityResponse.text();
     document.getElementById("list_african_cities").innerHTML = body;
 })}

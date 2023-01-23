@@ -7,3 +7,26 @@ Possible JSON entity formats:
         {"name":"Cairo", "continent":"Africa", "country":"Egypt"}
     ]
 }
+
+{
+    "cities":[
+         {"Africa": [{"name":"Cairo", "country":"Egypt"}, {"name":"Cape Town", "country":"South Africa"}]},
+        {"Europe": [{"name":"Rome", "country":"Italy"}]},
+        {"Asia": [{"name":"Tokyo", "country":"Japan"}]},
+        {"North America": [{"name":"San Francisco", "country":"California"}]},
+        {"South Ameria": [{"name":"Rio de Janeiro", "country":"Brazil"}]},
+        {"Australia": [{"name":"Sydney", "country":"New South Wales"}]}
+    ]
+}
+
+creates error:
+{
+        {"Africa": [{"name":"Cairo", "country":"Egypt"}, {"name":"Cape Town", "country":"South Africa"}]},
+        {"Europe": [{"name":"Rome", "country":"Italy"}]},
+        {"Asia": [{"name":"Tokyo", "country":"Japan"}]},
+        {"North America": [{"name":"San Francisco", "country":"California"}]},
+        {"South Ameria": [{"name":"Rio de Janeiro", "country":"Brazil"}]},
+        {"Australia": [{"name":"Sydney", "country":"New South Wales"}]}
+}
+
+app.js is API

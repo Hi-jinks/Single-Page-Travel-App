@@ -20,11 +20,7 @@ app.get('/africanCountry/:country', function(req,resp){
 /* Lists sites when a city from above is clicked on */
 app.get('/sites/:city', function(req, resp){
     city = req.params.city;
-    /*
-    city = city.replaceAll("/", "");
-    city = city.replaceAll('"', '')
-    city = '"' + city + '"' */
-    const result = sites["Rome"];
+    const result = sites[city];
     resp.send(result); /*SHOULD BE RESULT */
 })
 

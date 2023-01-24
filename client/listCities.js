@@ -49,12 +49,6 @@ async function searchCountry(country){
     }
 }
 
-async function loadSites (city) {
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    document.getElementById('sites_africa').innerHTML = sitesContent;
-}
-
 let asian_countries = document.getElementById("asiasearch");
 
 asian_countries.addEventListener('keypress', (event) => asiaCountry(event.target.value));
@@ -239,6 +233,66 @@ async function searchAU(austate){
     catch(e){
         alert(e);
     }
+}
+
+let africanSites = document.getElementById("afriSites");
+africanSites.addEventListener('keypress', (event) => loadAfriSites(event.target.value));
+
+
+async function loadAfriSites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('afri_sites').innerHTML = sitesContent;
+}
+
+let asiaSites = document.getElementById("asianSites");
+asiaSites.addEventListener('keypress', (event) => loadAsiaSites(event.target.value));
+
+
+async function loadAsiaSites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('asia_sites').innerHTML = sitesContent;
+}
+
+let europeSites = document.getElementById("euroSites");
+europeSites.addEventListener('keypress', (event) => loadEuroSites(event.target.value));
+
+
+async function loadEuroSites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('euro_sites').innerHTML = sitesContent;
+}
+
+let NASites = document.getElementById("naSites");
+NASites.addEventListener('keypress', (event) => loadNASites(event.target.value));
+
+
+async function loadNASites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('na_sites').innerHTML = sitesContent;
+}
+
+let SASites = document.getElementById("saSites");
+SASites.addEventListener('keypress', (event) => loadSASites(event.target.value));
+
+
+async function loadSASites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('sa_sites').innerHTML = sitesContent;
+}
+
+let AUSites = document.getElementById("auSites");
+AUSites.addEventListener('keypress', (event) => loadAUSites(event.target.value));
+
+
+async function loadAUSites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('au_sites').innerHTML = sitesContent;
 }
 
 

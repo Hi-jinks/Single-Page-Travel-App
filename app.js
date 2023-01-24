@@ -10,36 +10,23 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client')));
 
-/* To list cities 
-app.get('/cities/:continent', function (req, resp) {
-    const cityText = cities[0]
-    resp.send(cityText);
-});
-
-app.get('/cities', function(req, resp) {
-    const cityKeys = Object.keys(cities);
-    resp.send(cityKeys); 
-}) */
-
-/* To list countries for a continent 
-app.get('/africanCountry/:country', function(req,resp){
-    searchParam = req.params.country;
-    console.log(searchParam);
-    const countries = cities["Africa"];
-    for (country in countries){
-        if (country.name==searchParam){
-            result = country.name;
-        }
-    }
-    var resultText = JSON.stringify(result)
-    resp.send(result)
-}) */
 
 app.get('/africanCountry/:country', function(req,resp){
     country = req.params.country;
     const done = cities["Africa"][country];
     resp.send(done); 
 }) 
+
+/* Lists sites when a city from above is clicked on */
+app.get('/sites/:city', function(req, resp){
+    city = req.params.city;
+    /*
+    city = city.replaceAll("/", "");
+    city = city.replaceAll('"', '')
+    city = '"' + city + '"' */
+    const result = sites["Rome"];
+    resp.send(result); /*SHOULD BE RESULT */
+})
 
 /* List cities for a continent */
 app.get('/africanCities', function(req, resp){ 
@@ -49,11 +36,42 @@ app.get('/africanCities', function(req, resp){
     resp.send(citiesText);
 })
 
+
 /*To list sites for a specific city */
 app.get('/sites', function(req, resp){
     const sitesText = Object.keys(sites);
     resp.send(sitesText);
 })
+
+app.get('/asianCountry/:acountry', function(req, resp){
+    acountry = req.params.acountry;
+    const done = cities["Asia"][acountry]; /* [country]; */
+    resp.send(done); 
+})
+
+app.get('/europeanCountry/:eurocountry', function(req,resp){
+    eurocountry = req.params.eurocountry;
+    const edone = cities["Europe"][eurocountry];
+    resp.send(edone); 
+}) 
+
+app.get('/northStates/:nastate', function(req,resp){
+    nastate = req.params.nastate;
+    const nadone = cities["North America"][nastate];
+    resp.send(nadone); 
+}) 
+
+app.get('/southAmerica/:sacountry', function(req,resp){
+    sacountry = req.params.sacountry;
+    const sadone = cities["South America"][sacountry];
+    resp.send(sadone); 
+}) 
+
+app.get('/australia/:austate', function(req,resp){
+    austate = req.params.austate;
+    const audone = cities["Australia"][austate];
+    resp.send(audone); 
+}) 
 
 module.exports = app;
 

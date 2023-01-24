@@ -2,36 +2,6 @@
 const endpoint = 'http://127.0.0.1:8090/';
 
 /*
-async function listCities (continent) {
-    const cityResponse = await fetch(`http://127.0.0.1:8090/cities/${continent}`);
-    const cityNamesText = await cityResponse.text();
-    const cityNames = JSON.parse(cityNamesText);
-    const cityListElt = document.getElementById('list_african_cities');
-    let list = '';
-    for (const cityName of cityNames) {
-        list += `<li class='city_list_item'>${cityName}</li>`;
-    }
-    cityListElt.innerHTML = list;
-    const listItems = document.querySelectorAll('.city_list_item');
-    for (const listItem of listItems) {
-        listItem.addEventListener('click', (event) => loadCity(event.target.textContent));
-    } 
-}
-
-let africa_button = document.getElementById('african_cities');
-
-africa_button.addEventListener('click', async function listCity (event){
-    const cityResponse = await fetch(`http://127.0.0.1:8090/cities`);
-    let body = await response.text();
-    document.getElementById('list_african_cities').innerHTML = body;
-})
-
-document.addEventListener('DOMContentLoaded', listCities);
-document.addEventListener('DOMContentLoaded', listCity);
-
-*/
-
-
 let african_cities = document.getElementById('african_cities');
 
 function addButton() {
@@ -40,9 +10,10 @@ african_cities.addEventListener('click', async function listCities (event){
     let body = await cityResponse.text();
     document.getElementById("list_african_cities").innerHTML = body;
 })}
+*/
 
 let african_countries = document.getElementById("afrisearch");
-let country = document.getElementById('afrisearch').value;
+let country = document.getElementById('afrisearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
 
 african_countries.addEventListener('keypress', (event) => searchCountry(event.target.value));
 
@@ -54,14 +25,22 @@ async function searchCountry(country){
         body = body.replaceAll("]","");
         arr = body.split(",");
         let list = "";
-        list +=`<ul>`;
+        list +="<ul>";
         for (let i=0; i<arr.length; i++) {
             curr = arr[i];
-            list += `<li class='afri_city'>` + curr + `</li>`;
+            list += "<li class='afri_city'>"; 
+            list += curr 
+            list +="</li>";
         }
-        list+=`</ul>`
+        list+="</ul>"
 
         document.getElementById('afriCountry').innerHTML = list;
+
+        const listItems = document.querySelectorAll('.afri_city');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        }
+
         document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
     catch(e){
@@ -69,5 +48,200 @@ async function searchCountry(country){
     }
 }
 
+async function loadSites (city) {
+    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+    const sitesContent = await sitesResponse.text();
+    document.getElementById('sites_africa').innerHTML = sitesContent;
+}
+
+let asian_countries = document.getElementById("asiasearch");
+
+asian_countries.addEventListener('keypress', (event) => asiaCountry(event.target.value));
+
+async function asiaCountry(country){
+    try {
+        const countryResponse = await fetch(`http://127.0.0.1:8090/asianCountry/${country}`);
+        let body = await countryResponse.text();
+        body = body.replaceAll("[","");
+        body = body.replaceAll("]","");
+        arr = body.split(",");
+        let list = "";
+        list +="<ul>";
+        for (let i=0; i<arr.length; i++) {
+            curr = arr[i];
+            list += "<li class='asia_city'>"; 
+            list += curr 
+            list +="</li>";
+        }
+        list+="</ul>"
+
+        document.getElementById("list_asian_cities").innerHTML = list;
+
+        /*
+        const listItems = document.querySelectorAll('.asia_city');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        }
+        */
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+let european_countries = document.getElementById("eurosearch");
+let eurocountry = document.getElementById('eurosearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
+
+european_countries.addEventListener('keypress', (event) => searchEuroCountry(event.target.value));
+
+async function searchEuroCountry(eurocountry){
+    try {
+        const euroResponse = await fetch(`http://127.0.0.1:8090/europeanCountry/${eurocountry}`);
+        let ebody = await euroResponse.text();
+        document.getElementById('euroCountry').innerHTML = ebody;
+        /*
+        ebody = ebody.replaceAll("[","");
+        ebody = ebody.replaceAll("]","");
+        earr = ebody.split(",");
+        let elist = "";
+        elist +="<ul>";
+        for (let a=0; a<earr.length; a++) {
+            ecurr = earr[i];
+            elist += "<li class='euro_city'>"; 
+            elist += ecurr 
+            elist +="</li>";
+        }
+        elist+="</ul>"
+
+        document.getElementById('euroCountry').innerHTML = elist;
+
+        const elistItems = document.querySelectorAll('.euro_city');
+        for (const elistItem of elistItems) {
+            elistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        }
+
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; */
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+
+let na_state = document.getElementById("nasearch");
+let nastate = document.getElementById('nasearch').value;
+
+na_state.addEventListener('keypress', (event) => searchNA(event.target.value));
+
+async function searchNA(nastate){
+    try {
+        const naResponse = await fetch(`http://127.0.0.1:8090/northStates/${nastate}`);
+        let nabody = await naResponse.text();
+        document.getElementById('naState').innerHTML = nabody;
+        /*
+        ebody = ebody.replaceAll("[","");
+        ebody = ebody.replaceAll("]","");
+        earr = ebody.split(",");
+        let elist = "";
+        elist +="<ul>";
+        for (let a=0; a<earr.length; a++) {
+            ecurr = earr[i];
+            elist += "<li class='euro_city'>"; 
+            elist += ecurr 
+            elist +="</li>";
+        }
+        elist+="</ul>"
+
+        document.getElementById('euroCountry').innerHTML = elist;
+
+        const elistItems = document.querySelectorAll('.euro_city');
+        for (const elistItem of elistItems) {
+            elistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        }
+
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; */
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+let sa_countries = document.getElementById("sasearch");
+let sacountry = document.getElementById('sasearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
+
+sa_countries.addEventListener('keypress', (event) => searchSA(event.target.value));
+
+async function searchSA(sacountry){
+    try {
+        const saResponse = await fetch(`http://127.0.0.1:8090/southAmerica/${sacountry}`);
+        let sabody = await saResponse.text();
+        sabody = sabody.replaceAll("[","");
+        sabody = sabody.replaceAll("]","");
+        sa_arr = sabody.split(",");
+        let salist = "";
+        salist +="<ul>";
+        for (let e=0; e<sa_arr.length; e++) {
+            sacurr = sa_arr[e];
+            salist += "<li class='sa_city'>"; 
+            salist += sacurr 
+            salist +="</li>";
+        }
+        salist+="</ul>"
+
+        document.getElementById('saCountry').innerHTML = salist;
+        /*
+
+        const salistItems = document.querySelectorAll('.sa_city');
+        for (const salistItem of salistItems) {
+            salistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        } */
+
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+let au_states = document.getElementById("ausearch");
+let austate = document.getElementById('ausearch').value;
+
+au_states.addEventListener('keypress', (event) => searchAU(event.target.value));
+
+async function searchAU(austate){
+    try {
+        const auResponse = await fetch(`http://127.0.0.1:8090/australia/${austate}`);
+        let aubody = await auResponse.text();
+        aubody = aubody.replaceAll("[","");
+        aubody = aubody.replaceAll("]","");
+        auarr = aubody.split(",");
+        let aulist = "";
+        aulist +="<ul>";
+        for (let f=0; f<auarr.length; f++) {
+            aucurr = auarr[f];
+            aulist += "<li class='au_city'>"; 
+            aulist += aucurr 
+            aulist +="</li>";
+        }
+        aulist+="</ul>"
+
+        document.getElementById('auState').innerHTML = aulist;
+        /*
+
+        const salistItems = document.querySelectorAll('.sa_city');
+        for (const salistItem of salistItems) {
+            salistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
+        } */
+
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', addButton);
-/* document.addEventListener('DOMContentLoaded', searchCountry); */
+document.addEventListener('DOMContentLoaded', asiaCountry); 
+document.addEventListener('DOMContentLoaded', addNA)

@@ -1,3 +1,4 @@
+
 const endpoint = 'http://127.0.0.1:8090/';
 
 /*
@@ -43,15 +44,30 @@ african_cities.addEventListener('click', async function listCities (event){
 let african_countries = document.getElementById("afrisearch");
 let country = document.getElementById('afrisearch').value;
 
-function button() {
-african_countries.addEventListener('keypress', async function searchCity(country){
-    /*event.preventDefault(); */
-    /* var country = document.getElementById('afrisearch').value; */
-    const countryResponse = await fetch(`http://127.0.0.1:8090/africanCountry/${country}`);
-    let body = await countryResponse.text();
-    document.getElementById('afriCountry').innerHTML = body;
-})
-} 
+african_countries.addEventListener('keypress', (event) => searchCountry(event.target.value));
+
+async function searchCountry(country){
+    try {
+        const countryResponse = await fetch(`http://127.0.0.1:8090/africanCountry/${country}`);
+        let body = await countryResponse.text();
+        body = body.replaceAll("[","");
+        body = body.replaceAll("]","");
+        arr = body.split(",");
+        let list = "";
+        list +=`<ul>`;
+        for (let i=0; i<arr.length; i++) {
+            curr = arr[i];
+            list += `<li class='afri_city'>` + curr + `</li>`;
+        }
+        list+=`</ul>`
+
+        document.getElementById('afriCountry').innerHTML = list;
+        document.getElementById("country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
+    }
+    catch(e){
+        alert(e);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', addButton);
-document.addEventListener('DOMContentLoaded', button);
+/* document.addEventListener('DOMContentLoaded', searchCountry); */

@@ -36,16 +36,9 @@ app.get('/africanCountry/:country', function(req,resp){
 }) */
 
 app.get('/africanCountry/:country', function(req,resp){
-    /*country = req.params.country;*/
-    const city = cities["Africa"]["Egypt"];
-    resp.send(city);
-    /* for (place in countries){
-        if (place.name==country){
-            result = country.name;
-        }
-    }
-     var resultText = JSON.stringify(result); 
-    resp.send(result); */
+    country = req.params.country;
+    const done = cities["Africa"][country];
+    resp.send(done); 
 }) 
 
 /* List cities for a continent */

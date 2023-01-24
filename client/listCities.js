@@ -240,9 +240,24 @@ africanSites.addEventListener('keypress', (event) => loadAfriSites(event.target.
 
 
 async function loadAfriSites (city) {
+    try {
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('afri_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+    }
+    document.getElementById('afri_sites').innerHTML = newlist; 
+    }
+    catch (e) {
+        alert(e);
+    }
 }
 
 let asiaSites = document.getElementById("asianSites");

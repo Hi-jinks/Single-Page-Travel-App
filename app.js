@@ -21,6 +21,33 @@ app.get('/cities', function(req, resp) {
     resp.send(cityKeys); 
 }) */
 
+/* To list countries for a continent 
+app.get('/africanCountry/:country', function(req,resp){
+    searchParam = req.params.country;
+    console.log(searchParam);
+    const countries = cities["Africa"];
+    for (country in countries){
+        if (country.name==searchParam){
+            result = country.name;
+        }
+    }
+    var resultText = JSON.stringify(result)
+    resp.send(result)
+}) */
+
+app.get('/africanCountry/:country', function(req,resp){
+    /*country = req.params.country;*/
+    const city = cities["Africa"]["Egypt"];
+    resp.send(city);
+    /* for (place in countries){
+        if (place.name==country){
+            result = country.name;
+        }
+    }
+     var resultText = JSON.stringify(result); 
+    resp.send(result); */
+}) 
+
 /* List cities for a continent */
 app.get('/africanCities', function(req, resp){ 
     const city = cities["Africa"];

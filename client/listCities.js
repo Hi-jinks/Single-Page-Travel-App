@@ -40,4 +40,18 @@ african_cities.addEventListener('click', async function listCities (event){
     document.getElementById("list_african_cities").innerHTML = body;
 })}
 
+let african_countries = document.getElementById("afrisearch");
+let country = document.getElementById('afrisearch').value;
+
+function button() {
+african_countries.addEventListener('keypress', async function searchCity(country){
+    /*event.preventDefault(); */
+    /* var country = document.getElementById('afrisearch').value; */
+    const countryResponse = await fetch(`http://127.0.0.1:8090/africanCountry/${country}`);
+    let body = await countryResponse.text();
+    document.getElementById('afriCountry').innerHTML = body;
+})
+} 
+
 document.addEventListener('DOMContentLoaded', addButton);
+document.addEventListener('DOMContentLoaded', button);

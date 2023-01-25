@@ -597,27 +597,29 @@ let comment = document.getElementById("comment_submit");
 comment.addEventListener('click', (event) => addComment())
 
 async function addComment () {
-    /*var data = "";
+    /*var data = '{ "key:"';
     const site = document.getElementById('commentSite').value;
-    data += site + ",";
+    data += site + ', "content":';
     const name = document.getElementById('commentName').value;
-    data += name + ",";
-    const Body = document.getElementById('commentBody').value;*/
-    var data = "";
-    const site = document.getElementById('commentSite').value;
-    data += site + "|";
-    const name = document.getElementById('commentName').value;
-    data += name + ": ";
+    data += name + ': ';
     const Body = document.getElementById('commentBody').value;
+    data += Body + "}"*/
+    /* USE STRINGIFY OR PARSE*/
+    const site = document.getElementById('commentSite').value;
+    let name = document.getElementById('commentName').value;
+    const Body = document.getElementById('commentBody').value;
+    name += ": " + Body;
+    const data = {key:site, content:name};
     const response = await fetch(`http://127.0.0.1:8090/addComment`,
     {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain' /*'application/json'*/
+            'Content-Type': 'application/json' /*'text/plain'*/
             },
-        body: Body 
+        body: JSON.stringify(data)
     });
     /* recipeForm.reset(); */
+    document.getElementById("afterComment").innerHTML=`Comment has been published!`;
 };
 
     

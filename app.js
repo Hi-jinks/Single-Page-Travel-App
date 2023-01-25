@@ -79,18 +79,12 @@ app.get('/comments/:site', function(req, resp){
 })
 
 app.post('/addComment', function (req, resp) {
-    /*const oldinfo = String(req.body);
-    const ARR = oldinfo.split(',');
-    const name = (ARR[1]);
-    const body = (ARR[2]);
-    const pair = {name:body};
-    comments[(ARR[0])] = (comments[(ARR[0])]).push([{name:body}]);*/
-    /*fs.writeFileSync(commentsFile, JSON.stringify(comments));*/
-    const info = req.body;
-    console.log(typeof info)
-    arr = info.split("|")
-    comments[arr[0]].push(arr[1]);
-    /*fs.writeFileSync(commentsFile, JSON.stringify(comments));*/
+    const key = req.body.key;
+    const content =req.body.content;
+    comments[key].push(content);
+    /*textArray = JSON.parse(siteArray)
+    const index = textArray.length; */
+    fs.writeFileSync(commentsFile, JSON.stringify(comments));
     resp.send(comments);
 });
 

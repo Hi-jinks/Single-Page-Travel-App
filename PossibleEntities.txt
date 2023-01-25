@@ -1,5 +1,12 @@
 Possible JSON entity formats:
 
+
+{
+    "Table Mountain":["Catherine Doo: Lovely hike","Mike: Cable car was overcrowded and there was no where comfortable to sit at the top.","Gavin: Brilliant view!"],
+    "Trevi Fountain":["Billie: Overrated"]
+}
+
+
 {
     "Table Mountain": [{"Catherine Doo": "Lovely hike"}, {"Mike":"Cable car was overcrowded and there was no where comfortable to sit at the top."}, {"Gavin":"Brilliant view!"}],
     "Trevi Fountain": [{"Billie":"Overrated"}]
@@ -110,3 +117,5 @@ app.get('/africanCountry/:country', function(req,resp){
 
 
 app.js is API
+
+Show it's asynchronous in video using dev tools 

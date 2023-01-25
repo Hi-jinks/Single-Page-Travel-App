@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const cities = require('./cities.json');
 const sites = require('./sites.json');
+const comments = require('./comments.json')
 
 app.use(express.json());
 const path = require('path');
@@ -69,6 +70,12 @@ app.get('/australia/:austate', function(req,resp){
     const audone = cities["Australia"][austate];
     resp.send(audone); 
 }) 
+
+app.get('/comments/:site', function(req, resp){
+    site = req.params.site;
+    const respond = comments[site];
+    resp.send(respond);
+})
 
 module.exports = app;
 

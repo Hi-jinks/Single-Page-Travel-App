@@ -249,7 +249,7 @@ async function loadAfriSites () {
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
-        newlist+="<li>";
+        newlist+="<li class='classAfri'>";
         newlist+=key;
         newlist+="</li>";
         newlist+="</ul>";
@@ -259,10 +259,22 @@ async function loadAfriSites () {
         newlist+="</p>";
     }
     document.getElementById('afri_sites').innerHTML = newlist; 
+
+    const listItems = document.querySelectorAll('.classAfri');
+    for (const listItem of listItems) {
+        listItem.addEventListener('click', (event) => afriComments(event.target.textContent));
+    }
+
     }
     catch (e) {
         alert(e);
     }
+}
+
+async function afriComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    document.getElementById("africa_comments").innerHTML = commentContent;
 }
 
 let asiaSites = document.getElementById("asia_submit");

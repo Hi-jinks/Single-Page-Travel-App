@@ -235,12 +235,13 @@ async function searchAU(austate){
     }
 }
 
-let africanSites = document.getElementById("afriSites");
-africanSites.addEventListener('keypress', (event) => loadAfriSites(event.target.value));
+let africanSites = document.getElementById("afri_submit");
+africanSites.addEventListener('click', (event) => loadAfriSites());
 
 
-async function loadAfriSites (city) {
+async function loadAfriSites () {
     try {
+    let city = document.getElementById("afriSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
     let obj = JSON.parse(sitesContent)
@@ -252,6 +253,10 @@ async function loadAfriSites (city) {
         newlist+=key;
         newlist+="</li>";
         newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
     }
     document.getElementById('afri_sites').innerHTML = newlist; 
     }
@@ -260,54 +265,129 @@ async function loadAfriSites (city) {
     }
 }
 
-let asiaSites = document.getElementById("asianSites");
-asiaSites.addEventListener('keypress', (event) => loadAsiaSites(event.target.value));
+let asiaSites = document.getElementById("asia_submit");
+asiaSites.addEventListener('click', (event) => loadAsiaSites());
 
 
-async function loadAsiaSites (city) {
+async function loadAsiaSites () {
+    let city = document.getElementById("asianSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('asia_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById('asia_sites').innerHTML = newlist;
 }
 
-let europeSites = document.getElementById("euroSites");
-europeSites.addEventListener('keypress', (event) => loadEuroSites(event.target.value));
+let europeSites = document.getElementById("euro_submit");
+europeSites.addEventListener('click', (event) => loadEuroSites());
 
 
-async function loadEuroSites (city) {
+async function loadEuroSites () {
+    let city = document.getElementById("euroSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('euro_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById('euro_sites').innerHTML = newlist;
 }
 
-let NASites = document.getElementById("naSites");
-NASites.addEventListener('keypress', (event) => loadNASites(event.target.value));
+let NASites = document.getElementById("na_submit");
+NASites.addEventListener('click', (event) => loadNASites());
 
 
-async function loadNASites (city) {
+async function loadNASites () {
+    let city = document.getElementById("naSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('na_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById('na_sites').innerHTML = newlist;
 }
 
-let SASites = document.getElementById("saSites");
-SASites.addEventListener('keypress', (event) => loadSASites(event.target.value));
+let SASites = document.getElementById("sa_submit");
+SASites.addEventListener('click', (event) => loadSASites());
 
 
-async function loadSASites (city) {
+async function loadSASites () {
+    let city = document.getElementById("saSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('sa_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById('sa_sites').innerHTML = newlist;
 }
 
-let AUSites = document.getElementById("auSites");
-AUSites.addEventListener('keypress', (event) => loadAUSites(event.target.value));
+let AUSites = document.getElementById("au_submit");
+AUSites.addEventListener('click', (event) => loadAUSites());
 
 
-async function loadAUSites (city) {
+async function loadAUSites () {
+    let city = document.getElementById("auSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    document.getElementById('au_sites').innerHTML = sitesContent;
+    let obj = JSON.parse(sitesContent)
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById('au_sites').innerHTML = newlist;
 }
 
 

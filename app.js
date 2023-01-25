@@ -21,8 +21,9 @@ app.get('/africanCountry/:country', function(req,resp){
 app.get('/sites/:city', function(req, resp){
     city = req.params.city;
     const result = sites[city];
-    resp.send(result); /*SHOULD BE RESULT */
+    resp.send(result); 
 })
+
 
 /* List cities for a continent */
 app.get('/africanCities', function(req, resp){ 

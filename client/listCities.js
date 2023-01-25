@@ -2,7 +2,7 @@
 const endpoint = 'http://127.0.0.1:8090/';
 
 let african_countries = document.getElementById("afrisearch");
-let country = document.getElementById('afrisearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
+let country = document.getElementById('afrisearch').value; 
 
 african_countries.addEventListener('keypress', (event) => searchCountry(event.target.value));
 
@@ -24,13 +24,6 @@ async function searchCountry(country){
         list+="</ul>"
 
         document.getElementById('afriCountry').innerHTML = list;
-        /*
-
-        const listItems = document.querySelectorAll('.afri_city');
-        for (const listItem of listItems) {
-            listItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        } */
-
         document.getElementById("afri_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
     catch(e){
@@ -60,13 +53,6 @@ async function asiaCountry(country){
         list+="</ul>"
 
         document.getElementById("list_asian_cities").innerHTML = list;
-
-        /*
-        const listItems = document.querySelectorAll('.asia_city');
-        for (const listItem of listItems) {
-            listItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        }
-        */
         document.getElementById("asia_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
     catch(e){
@@ -75,7 +61,7 @@ async function asiaCountry(country){
 }
 
 let european_countries = document.getElementById("eurosearch");
-let eurocountry = document.getElementById('eurosearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
+let eurocountry = document.getElementById('eurosearch').value; 
 
 european_countries.addEventListener('keypress', (event) => searchEuroCountry(event.target.value));
 
@@ -99,12 +85,6 @@ async function searchEuroCountry(eurocountry){
         elist+="</ul>"
 
         document.getElementById('euroCountry').innerHTML = elist;
-
-        /*const elistItems = document.querySelectorAll('.euro_city');
-        for (const elistItem of elistItems) {
-            elistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        }
-        */
 
         document.getElementById("euro_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
@@ -139,10 +119,6 @@ async function searchNA(nastate){
 
         document.getElementById('naState').innerHTML = nalist;
 
-        /*const elistItems = document.querySelectorAll('.euro_city');
-        for (const elistItem of elistItems) {
-            elistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        }*/
         document.getElementById("na_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
     catch(e){
@@ -173,12 +149,6 @@ async function searchSA(sacountry){
         salist+="</ul>"
 
         document.getElementById('saCountry').innerHTML = salist;
-        /*
-
-        const salistItems = document.querySelectorAll('.sa_city');
-        for (const salistItem of salistItems) {
-            salistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        } */
 
         document.getElementById("sa_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
@@ -210,12 +180,6 @@ async function searchAU(austate){
         aulist+="</ul>"
 
         document.getElementById('auState').innerHTML = aulist;
-        /*
-
-        const salistItems = document.querySelectorAll('.sa_city');
-        for (const salistItem of salistItems) {
-            salistItem.addEventListener('click', (event) => loadSites(event.target.textContent));
-        } */
 
         document.getElementById("au_country_explain").innerHTML = `Click on a city to see the sites in it that have been reviewed. If there are no cities, I'm afraid this is not a popular enough destination for reviews`; 
     }
@@ -266,17 +230,6 @@ async function afriComments(site){
     let obj = JSON.parse(commentContent); /*commentResponse */
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        /*var key = Object.keys(obj[z]);
-        newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -326,16 +279,7 @@ async function asiaComments(site){
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
-        /*newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
+
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -384,17 +328,7 @@ async function euroComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        /*var key = Object.keys(obj[z]);
-        newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
+
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -443,17 +377,7 @@ async function naComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        /*var key = Object.keys(obj[z]);
-        newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
+
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -503,17 +427,7 @@ async function saComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        /*var key = Object.keys(obj[z]);
-        newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
+
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -563,17 +477,7 @@ async function auComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        /*var key = Object.keys(obj[z]);
-        newlist+="<ul>";
-        newlist+="<li>";
-        newlist+=key;
-        newlist+=":";
-        newlist+="</li>";
-        newlist+="</ul>";
-        var description = obj[z][key];
-        newlist+="<p>";
-        newlist+=description;
-        newlist+="</p>";*/
+
         newlist+="<p>";
         newlist+=obj[z];
         newlist+="</p>";
@@ -586,14 +490,7 @@ let comment = document.getElementById("comment_submit");
 comment.addEventListener('click', (event) => addComment())
 
 async function addComment () {
-    /*var data = '{ "key:"';
-    const site = document.getElementById('commentSite').value;
-    data += site + ', "content":';
-    const name = document.getElementById('commentName').value;
-    data += name + ': ';
-    const Body = document.getElementById('commentBody').value;
-    data += Body + "}"*/
-    /* USE STRINGIFY OR PARSE*/
+
     const site = document.getElementById('commentSite').value;
     let name = document.getElementById('commentName').value;
     const Body = document.getElementById('commentBody').value;
@@ -603,17 +500,11 @@ async function addComment () {
     {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json' /*'text/plain'*/
+            'Content-Type': 'application/json' 
             },
         body: JSON.stringify(data)
     });
-    /* recipeForm.reset(); */
     document.getElementById("afterComment").innerHTML=`Comment has been published!`;
 };
-
-    
-
-
-document.addEventListener('DOMContentLoaded', addButton);
+   
 document.addEventListener('DOMContentLoaded', asiaCountry); 
-document.addEventListener('DOMContentLoaded', addNA)

@@ -244,7 +244,7 @@ async function loadAfriSites () {
     let city = document.getElementById("afriSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
@@ -274,7 +274,22 @@ async function loadAfriSites () {
 async function afriComments(site){
     const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
     const commentContent = await commentResponse.text();
-    document.getElementById("africa_comments").innerHTML = commentContent;
+    let obj = JSON.parse(commentContent); /*commentResponse */
+    let newlist = "";
+    for (let z=0; z<obj.length; z++){
+        var key = Object.keys(obj[z]);
+        newlist+="<ul>";
+        newlist+="<li>";
+        newlist+=key;
+        newlist+=":";
+        newlist+="</li>";
+        newlist+="</ul>";
+        var description = obj[z][key];
+        newlist+="<p>";
+        newlist+=description;
+        newlist+="</p>";
+    }
+    document.getElementById("africa_comments").innerHTML = newlist;
 }
 
 let asiaSites = document.getElementById("asia_submit");
@@ -285,7 +300,7 @@ async function loadAsiaSites () {
     let city = document.getElementById("asianSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
@@ -310,7 +325,7 @@ async function loadEuroSites () {
     let city = document.getElementById("euroSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
@@ -335,7 +350,7 @@ async function loadNASites () {
     let city = document.getElementById("naSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
@@ -360,7 +375,7 @@ async function loadSASites () {
     let city = document.getElementById("saSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
@@ -385,7 +400,7 @@ async function loadAUSites () {
     let city = document.getElementById("auSites").value;
     const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
     const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent)
+    let obj = JSON.parse(sitesContent);
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);

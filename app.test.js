@@ -8,20 +8,20 @@ const app = require('./app');
 describe('Test the get and post requests for comments', () => {
     test('GET /comments/Table Mountain succeeds', () => {
         return request(app)
-	    .get('/comments/Table Mountain')
-	    .expect(200);
+        .get('/comments/Table Mountain')
+        .expect(200);
     });
 
     test('GET /comments/Table Mountain returns JSON', () => {
         return request(app)
-	    .get('/comments/Table Mountain')
-	    .expect('Content-type', /json/);
+        .get('/comments/Table Mountain')
+        .expect('Content-type', /json/);
     });
 
     test('GET /comments/Table Mountain includes Catherine Doo as a commenter', () => {
         return request(app)
-	    .get('/comments/Table Mountain')
-	    .expect(/Catherine Doo/);
+        .get('/comments/Table Mountain')
+        .expect(/Catherine Doo/);
     });
 
     test('POST /addComment', () => {
@@ -29,46 +29,46 @@ describe('Test the get and post requests for comments', () => {
         return request(app)
         .post('/addComment')
         .send(params)
-	    .expect(200);
+        .expect(200);
     });
 });
 
 describe('Test the requests for cities', () => {
     test('GET /country/Asia/Japan succeeds', () => {
         return request(app)
-	    .get('/country/Asia/Japan')
-	    .expect(200);
+        .get('/country/Asia/Japan')
+        .expect(200);
     });
 
     test('GET /country/Asia/Japan returns JSON', () => {
         return request(app)
-	    .get('/country/Asia/Japan')
-	    .expect('Content-type', /json/);
+        .get('/country/Asia/Japan')
+        .expect('Content-type', /json/);
     });
 
     test('GET /country/Asia/Japan includes Tokyo', () => {
         return request(app)
-	    .get('/country/Asia/Japan')
-	    .expect(/Tokyo/);
+        .get('/country/Asia/Japan')
+        .expect(/Tokyo/);
     });
 });
 
 describe('Test the requests for sites', () => {
     test('GET /sites/Cairo succeeds', () => {
         return request(app)
-	    .get('/sites/Cairo')
-	    .expect(200);
+        .get('/sites/Cairo')
+        .expect(200);
     });
 
     test('GET /sites/Cairo returns JSON', () => {
         return request(app)
-	    .get('/sites/Cairo')
-	    .expect('Content-type', /json/);
+        .get('/sites/Cairo')
+        .expect('Content-type', /json/);
     });
 
     test('GET /sites/Cairo includes the Giza Pyramids', () => {
         return request(app)
-	    .get('/sites/Cairo')
-	    .expect(/Giza Pyramids/);
+        .get('/sites/Cairo')
+        .expect(/Giza Pyramids/);
     });
 });

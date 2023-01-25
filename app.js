@@ -85,7 +85,7 @@ app.post('/addComment', function (req, resp) {
     /*textArray = JSON.parse(siteArray)
     const index = textArray.length; */
     fs.writeFileSync(commentsFile, JSON.stringify(comments));
-    resp.send(comments);
+    resp.send(comments[key]);
 });
 
 module.exports = app;

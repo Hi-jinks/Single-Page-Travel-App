@@ -119,3 +119,6 @@ app.get('/africanCountry/:country', function(req,resp){
 app.js is API
 
 Show it's asynchronous in video using dev tools 
+
+Nodemon means server restarts whenever files are changed, so you don't have to do it. Installation in lecture 28/11/2022 at 30:06.
+Can put "start": "nodemon server.js"

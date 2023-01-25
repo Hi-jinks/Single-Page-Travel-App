@@ -277,7 +277,7 @@ async function afriComments(site){
     let obj = JSON.parse(commentContent); /*commentResponse */
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        var key = Object.keys(obj[z]);
+        /*var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
@@ -287,6 +287,9 @@ async function afriComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("africa_comments").innerHTML = newlist;
@@ -334,7 +337,7 @@ async function asiaComments(site){
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
-        newlist+="<ul>";
+        /*newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
         newlist+=":";
@@ -343,6 +346,9 @@ async function asiaComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("asia_comments").innerHTML = newlist;
@@ -389,7 +395,7 @@ async function euroComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        var key = Object.keys(obj[z]);
+        /*var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
@@ -399,6 +405,9 @@ async function euroComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("euro_comments").innerHTML = newlist;
@@ -445,7 +454,7 @@ async function naComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        var key = Object.keys(obj[z]);
+        /*var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
@@ -455,6 +464,9 @@ async function naComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("na_comments").innerHTML = newlist;
@@ -502,7 +514,7 @@ async function saComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        var key = Object.keys(obj[z]);
+        /*var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
@@ -512,6 +524,9 @@ async function saComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("sa_comments").innerHTML = newlist;
@@ -559,7 +574,7 @@ async function auComments(site){
     let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
-        var key = Object.keys(obj[z]);
+        /*var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
@@ -569,11 +584,43 @@ async function auComments(site){
         var description = obj[z][key];
         newlist+="<p>";
         newlist+=description;
+        newlist+="</p>";*/
+        newlist+="<p>";
+        newlist+=obj[z];
         newlist+="</p>";
     }
     document.getElementById("au_comments").innerHTML = newlist;
 
 }
+
+let comment = document.getElementById("comment_submit");
+comment.addEventListener('click', (event) => addComment())
+
+async function addComment () {
+    /*var data = "";
+    const site = document.getElementById('commentSite').value;
+    data += site + ",";
+    const name = document.getElementById('commentName').value;
+    data += name + ",";
+    const Body = document.getElementById('commentBody').value;*/
+    var data = "";
+    const site = document.getElementById('commentSite').value;
+    data += site + "|";
+    const name = document.getElementById('commentName').value;
+    data += name + ": ";
+    const Body = document.getElementById('commentBody').value;
+    const response = await fetch(`http://127.0.0.1:8090/addComment`,
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain' /*'application/json'*/
+            },
+        body: Body 
+    });
+    /* recipeForm.reset(); */
+};
+
+    
 
 
 document.addEventListener('DOMContentLoaded', addButton);

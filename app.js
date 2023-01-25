@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 
-const fs = require('fs');
-
 const cities = require('./cities.json');
 const sites = require('./sites.json');
 const comments = require('./comments.json')
 
+const fs = require('fs');
+
+const commentsFile = './comments.json';
 app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client')));
@@ -76,6 +77,22 @@ app.get('/comments/:site', function(req, resp){
     const respond = comments[site];
     resp.send(respond);
 })
+
+app.post('/addComment', function (req, resp) {
+    /*const oldinfo = String(req.body);
+    const ARR = oldinfo.split(',');
+    const name = (ARR[1]);
+    const body = (ARR[2]);
+    const pair = {name:body};
+    comments[(ARR[0])] = (comments[(ARR[0])]).push([{name:body}]);*/
+    /*fs.writeFileSync(commentsFile, JSON.stringify(comments));*/
+    const info = req.body;
+    console.log(typeof info)
+    arr = info.split("|")
+    comments[arr[0]].push(arr[1]);
+    /*fs.writeFileSync(commentsFile, JSON.stringify(comments));*/
+    resp.send(comments);
+});
 
 module.exports = app;
 

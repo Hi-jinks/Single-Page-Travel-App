@@ -1,4 +1,10 @@
 Possible JSON entity formats:
+
+{
+    "Table Mountain": [{"Catherine Doo": "Lovely hike"}, {"Mike":"Cable car was overcrowded and there was no where comfortable to sit at the top."}, {"Gavin":"Brilliant view!"}],
+    "Trevi Fountain": [{"Billie":"Overrated"}]
+}
+
 {
     "Cape Town":["Table Mountain", "V&A Waterfront", "Boulders Beach"],
     "Rome": ["Trevi Fountain", "Colosseum"]

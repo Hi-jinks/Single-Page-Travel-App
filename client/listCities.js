@@ -1,6 +1,62 @@
 
 const endpoint = 'http://127.0.0.1:8090/';
 
+function addButton(){ 
+    let submit = document.querySelectorAll(".submitCountry");
+    for (sub of submit){
+        sub.addEventListener('keypress', (event) => searchCountry(event.target.id));
+    }
+} 
+
+async function searchCountry(continent) {
+    try{
+        console.log(continent);
+        let city = document.getElementById(continent).value;
+
+        console.log("city " + city);
+
+        const countryResponse = await fetch(`http://127.0.0.1:8090/country/${continent}/${city}`);
+
+        let body = await countryResponse.text();
+        body = body.replaceAll("[","");
+        body = body.replaceAll("]","");
+        arr = body.split(",");
+        let list = "";
+        list +="<ul>";
+        for (let i=0; i<arr.length; i++) {
+            curr = arr[i];
+            list += "<li>"; 
+            list += curr 
+            list +="</li>";
+        }
+        list+="</ul>"
+
+        if (continent=="Africa") {
+            document.getElementById('afriCountry').innerHTML = list;
+        }
+        else if (continent=="Asia"){
+            document.getElementById("list_asian_cities").innerHTML = list;
+        }
+        else if (continent=="Europe"){
+            document.getElementById('euroCountry').innerHTML = list;
+        }
+        else if (continent=="North America"){
+            document.getElementById('naState').innerHTML = list;
+        }
+        else if (continent=="South America"){
+            document.getElementById('saCountry').innerHTML = list;
+        }
+        else if (continent=="Australia"){
+            document.getElementById('auState').innerHTML = list;
+        }
+    }
+    catch(e) {
+        alert(e);
+    }
+}
+
+/*
+
 let african_countries = document.getElementById("afrisearch");
 let country = document.getElementById('afrisearch').value; 
 
@@ -59,6 +115,7 @@ async function asiaCountry(country){
         alert(e);
     }
 }
+
 
 let european_countries = document.getElementById("eurosearch");
 let eurocountry = document.getElementById('eurosearch').value; 
@@ -126,6 +183,8 @@ async function searchNA(nastate){
     }
 }
 
+
+
 let sa_countries = document.getElementById("sasearch");
 let sacountry = document.getElementById('sasearch').value; 
 
@@ -157,6 +216,8 @@ async function searchSA(sacountry){
     }
 }
 
+
+
 let au_states = document.getElementById("ausearch");
 let austate = document.getElementById('ausearch').value;
 
@@ -187,6 +248,8 @@ async function searchAU(austate){
         alert(e);
     }
 }
+
+*/
 
 let africanSites = document.getElementById("afri_submit");
 africanSites.addEventListener('click', (event) => loadAfriSites());
@@ -507,4 +570,5 @@ async function addComment () {
     document.getElementById("afterComment").innerHTML=`Comment has been published!`;
 };
    
-document.addEventListener('DOMContentLoaded', asiaCountry); 
+/* document.addEventListener('DOMContentLoaded', asiaCountry); */
+document.addEventListener('DOMContentLoaded', addButton); 

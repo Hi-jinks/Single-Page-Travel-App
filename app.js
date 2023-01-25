@@ -12,6 +12,13 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client')));
 
+app.get('/country/:continent/:city', function(req, resp){
+    continent = req.params.continent;
+    city = req.params.city;
+    const alldone = cities[continent][city];
+    resp.send(alldone);
+})
+
 /* Lists most popular cities in an African country*/
 app.get('/africanCountry/:country', function(req,resp){
     country = req.params.country;

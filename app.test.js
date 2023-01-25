@@ -32,3 +32,43 @@ describe('Test the get and post requests for comments', () => {
 	    .expect(200);
     });
 });
+
+describe('Test the requests for cities', () => {
+    test('GET /country/Asia/Japan succeeds', () => {
+        return request(app)
+	    .get('/country/Asia/Japan')
+	    .expect(200);
+    });
+
+    test('GET /country/Asia/Japan returns JSON', () => {
+        return request(app)
+	    .get('/country/Asia/Japan')
+	    .expect('Content-type', /json/);
+    });
+
+    test('GET /country/Asia/Japan includes Tokyo', () => {
+        return request(app)
+	    .get('/country/Asia/Japan')
+	    .expect(/Tokyo/);
+    });
+});
+
+describe('Test the requests for sites', () => {
+    test('GET /sites/Cairo succeeds', () => {
+        return request(app)
+	    .get('/sites/Cairo')
+	    .expect(200);
+    });
+
+    test('GET /sites/Cairo returns JSON', () => {
+        return request(app)
+	    .get('/sites/Cairo')
+	    .expect('Content-type', /json/);
+    });
+
+    test('GET /sites/Cairo includes the Giza Pyramids', () => {
+        return request(app)
+	    .get('/sites/Cairo')
+	    .expect(/Giza Pyramids/);
+    });
+});

@@ -1,17 +1,6 @@
 
 const endpoint = 'http://127.0.0.1:8090/';
 
-/*
-let african_cities = document.getElementById('african_cities');
-
-function addButton() {
-african_cities.addEventListener('click', async function listCities (event){ 
-    const cityResponse = await fetch(`http://127.0.0.1:8090/africanCities`);
-    let body = await cityResponse.text();
-    document.getElementById("list_african_cities").innerHTML = body;
-})}
-*/
-
 let african_countries = document.getElementById("afrisearch");
 let country = document.getElementById('afrisearch').value; /* SHOULD BE LET INSTEAD OF VAR? */
 

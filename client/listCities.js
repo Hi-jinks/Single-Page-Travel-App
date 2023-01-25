@@ -297,16 +297,47 @@ asiaSites.addEventListener('click', (event) => loadAsiaSites());
 
 
 async function loadAsiaSites () {
-    let city = document.getElementById("asianSites").value;
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent);
+    try{
+        let city = document.getElementById("asianSites").value;
+        const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+        const sitesContent = await sitesResponse.text();
+        let obj = JSON.parse(sitesContent);
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            var key = Object.keys(obj[z]);
+            newlist+="<ul>";
+            newlist+="<li class='classAsia'>";
+            newlist+=key;
+            newlist+="</li>";
+            newlist+="</ul>";
+            var description = obj[z][key];
+            newlist+="<p>";
+            newlist+=description;
+            newlist+="</p>";
+        }
+        document.getElementById('asia_sites').innerHTML = newlist;
+
+        const listItems = document.querySelectorAll('.classAsia');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => asiaComments(event.target.textContent));
+        }
+    }
+    catch (e) {
+        alert(e);
+    }
+}
+
+async function asiaComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
+        newlist+=":";
         newlist+="</li>";
         newlist+="</ul>";
         var description = obj[z][key];
@@ -314,7 +345,7 @@ async function loadAsiaSites () {
         newlist+=description;
         newlist+="</p>";
     }
-    document.getElementById('asia_sites').innerHTML = newlist;
+    document.getElementById("asia_comments").innerHTML = newlist;
 }
 
 let europeSites = document.getElementById("euro_submit");
@@ -322,16 +353,47 @@ europeSites.addEventListener('click', (event) => loadEuroSites());
 
 
 async function loadEuroSites () {
-    let city = document.getElementById("euroSites").value;
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent);
+    try{
+        let city = document.getElementById("euroSites").value;
+        const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+        const sitesContent = await sitesResponse.text();
+        let obj = JSON.parse(sitesContent);
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            var key = Object.keys(obj[z]);
+            newlist+="<ul>";
+            newlist+="<li class='classEuro'>";
+            newlist+=key;
+            newlist+="</li>";
+            newlist+="</ul>";
+            var description = obj[z][key];
+            newlist+="<p>";
+            newlist+=description;
+            newlist+="</p>";
+        }
+        document.getElementById('euro_sites').innerHTML = newlist;
+
+        const listItems = document.querySelectorAll('.classEuro');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => euroComments(event.target.textContent));
+        }
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+async function euroComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
+        newlist+=":";
         newlist+="</li>";
         newlist+="</ul>";
         var description = obj[z][key];
@@ -339,7 +401,7 @@ async function loadEuroSites () {
         newlist+=description;
         newlist+="</p>";
     }
-    document.getElementById('euro_sites').innerHTML = newlist;
+    document.getElementById("euro_comments").innerHTML = newlist;
 }
 
 let NASites = document.getElementById("na_submit");
@@ -347,16 +409,47 @@ NASites.addEventListener('click', (event) => loadNASites());
 
 
 async function loadNASites () {
-    let city = document.getElementById("naSites").value;
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent);
+    try{
+        let city = document.getElementById("naSites").value;
+        const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+        const sitesContent = await sitesResponse.text();
+        let obj = JSON.parse(sitesContent);
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            var key = Object.keys(obj[z]);
+            newlist+="<ul>";
+            newlist+="<li class='classNA'>";
+            newlist+=key;
+            newlist+="</li>";
+            newlist+="</ul>";
+            var description = obj[z][key];
+            newlist+="<p>";
+            newlist+=description;
+            newlist+="</p>";
+        }
+        document.getElementById('na_sites').innerHTML = newlist;
+
+        const listItems = document.querySelectorAll('.classNA');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => naComments(event.target.textContent));
+        }
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+async function naComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
+        newlist+=":";
         newlist+="</li>";
         newlist+="</ul>";
         var description = obj[z][key];
@@ -364,7 +457,8 @@ async function loadNASites () {
         newlist+=description;
         newlist+="</p>";
     }
-    document.getElementById('na_sites').innerHTML = newlist;
+    document.getElementById("na_comments").innerHTML = newlist;
+
 }
 
 let SASites = document.getElementById("sa_submit");
@@ -372,16 +466,47 @@ SASites.addEventListener('click', (event) => loadSASites());
 
 
 async function loadSASites () {
-    let city = document.getElementById("saSites").value;
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent);
+    try{
+        let city = document.getElementById("saSites").value;
+        const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+        const sitesContent = await sitesResponse.text();
+        let obj = JSON.parse(sitesContent);
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            var key = Object.keys(obj[z]);
+            newlist+="<ul>";
+            newlist+="<li class='classSA'>";
+            newlist+=key;
+            newlist+="</li>";
+            newlist+="</ul>";
+            var description = obj[z][key];
+            newlist+="<p>";
+            newlist+=description;
+            newlist+="</p>";
+        }
+        document.getElementById('sa_sites').innerHTML = newlist;
+
+        const listItems = document.querySelectorAll('.classSA');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => saComments(event.target.textContent));
+        }
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+async function saComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
+        newlist+=":";
         newlist+="</li>";
         newlist+="</ul>";
         var description = obj[z][key];
@@ -389,7 +514,8 @@ async function loadSASites () {
         newlist+=description;
         newlist+="</p>";
     }
-    document.getElementById('sa_sites').innerHTML = newlist;
+    document.getElementById("sa_comments").innerHTML = newlist;
+
 }
 
 let AUSites = document.getElementById("au_submit");
@@ -397,16 +523,47 @@ AUSites.addEventListener('click', (event) => loadAUSites());
 
 
 async function loadAUSites () {
-    let city = document.getElementById("auSites").value;
-    const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
-    const sitesContent = await sitesResponse.text();
-    let obj = JSON.parse(sitesContent);
+    try{
+        let city = document.getElementById("auSites").value;
+        const sitesResponse = await fetch(`http://127.0.0.1:8090/sites/${city}`);
+        const sitesContent = await sitesResponse.text();
+        let obj = JSON.parse(sitesContent);
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            var key = Object.keys(obj[z]);
+            newlist+="<ul>";
+            newlist+="<li class='classAU'>";
+            newlist+=key;
+            newlist+="</li>";
+            newlist+="</ul>";
+            var description = obj[z][key];
+            newlist+="<p>";
+            newlist+=description;
+            newlist+="</p>";
+        }
+        document.getElementById('au_sites').innerHTML = newlist;
+
+        const listItems = document.querySelectorAll('.classAU');
+        for (const listItem of listItems) {
+            listItem.addEventListener('click', (event) => auComments(event.target.textContent));
+        }
+    }
+    catch(e){
+        alert(e);
+    }
+}
+
+async function auComments(site){
+    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+    const commentContent = await commentResponse.text();
+    let obj = JSON.parse(commentContent); 
     let newlist = "";
     for (let z=0; z<obj.length; z++){
         var key = Object.keys(obj[z]);
         newlist+="<ul>";
         newlist+="<li>";
         newlist+=key;
+        newlist+=":";
         newlist+="</li>";
         newlist+="</ul>";
         var description = obj[z][key];
@@ -414,7 +571,8 @@ async function loadAUSites () {
         newlist+=description;
         newlist+="</p>";
     }
-    document.getElementById('au_sites').innerHTML = newlist;
+    document.getElementById("au_comments").innerHTML = newlist;
+
 }
 
 

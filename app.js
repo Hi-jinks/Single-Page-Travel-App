@@ -12,19 +12,13 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client')));
 
+/* Lists most popular cities in a country*/
 app.get('/country/:continent/:city', function(req, resp){
     continent = req.params.continent;
     city = req.params.city;
     const alldone = cities[continent][city];
     resp.send(alldone);
 })
-
-/* Lists most popular cities in an African country*/
-app.get('/africanCountry/:country', function(req,resp){
-    country = req.params.country;
-    const done = cities["Africa"][country];
-    resp.send(done); 
-}) 
 
 /* Lists most popular sites in a city with descriptions */
 app.get('/sites/:city', function(req, resp){
@@ -33,40 +27,6 @@ app.get('/sites/:city', function(req, resp){
     resp.send(result); 
 })
 
-/* Lists most popular cities in an Asian country*/
-app.get('/asianCountry/:acountry', function(req, resp){
-    acountry = req.params.acountry;
-    const done = cities["Asia"][acountry]; /* [country]; */
-    resp.send(done); 
-})
-
-/* Lists most popular cities in a European country*/
-app.get('/europeanCountry/:eurocountry', function(req,resp){
-    eurocountry = req.params.eurocountry;
-    const edone = cities["Europe"][eurocountry];
-    resp.send(edone); 
-}) 
-
-/* Lists most popular cities in a North American state*/
-app.get('/northStates/:nastate', function(req,resp){
-    nastate = req.params.nastate;
-    const nadone = cities["North America"][nastate];
-    resp.send(nadone); 
-}) 
-
-/* Lists most popular cities in a South American country*/
-app.get('/southAmerica/:sacountry', function(req,resp){
-    sacountry = req.params.sacountry;
-    const sadone = cities["South America"][sacountry];
-    resp.send(sadone); 
-}) 
-
-/* Lists most popular cities in an Australian state*/
-app.get('/australia/:austate', function(req,resp){
-    austate = req.params.austate;
-    const audone = cities["Australia"][austate];
-    resp.send(audone); 
-}) 
 
 /* Lists and details the comments for a certain site */
 app.get('/comments/:site', function(req, resp){

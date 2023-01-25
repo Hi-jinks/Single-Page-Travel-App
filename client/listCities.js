@@ -192,6 +192,5 @@ async function addComment () {
     document.getElementById("afterComment").innerHTML=`Comment has been published!`;
 };
    
-/* document.addEventListener('DOMContentLoaded', asiaCountry); */
 document.addEventListener('DOMContentLoaded', addButton); 
 document.addEventListener('DOMContentLoaded', sitesButton);

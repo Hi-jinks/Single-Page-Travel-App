@@ -1,10 +1,14 @@
-
 const endpoint = 'http://127.0.0.1:8090/';
 
 function addButton(){ 
-    let submit = document.querySelectorAll(".submitCountry");
-    for (sub of submit){
-        sub.addEventListener('keypress', (event) => searchCountry(event.target.id));
+    try {
+        let submit = document.querySelectorAll(".submitCountry");
+        for (sub of submit){
+            sub.addEventListener('keypress', (event) => searchCountry(event.target.id));
+        }
+    }
+    catch (e) {
+        alert(e);
     }
 } 
 
@@ -53,9 +57,14 @@ async function searchCountry(continent) {
 }
 
 function sitesButton() {
-    let sitesSubmit = document.querySelectorAll(".submittable");
-    for (s of sitesSubmit){
-        s.addEventListener('click', (event) => searchSites(event.target.name)); 
+    try {
+        let sitesSubmit = document.querySelectorAll(".submittable");
+        for (s of sitesSubmit){
+            s.addEventListener('click', (event) => searchSites(event.target.name)); 
+        }
+    }
+    catch(e) {
+        alert(e);
     }
 }
 
@@ -158,16 +167,21 @@ async function searchSites(location){
 }
 
 async function loadComments(site, locate) {
-    const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
-    const commentContent = await commentResponse.text();
-    let obj = JSON.parse(commentContent); 
-    let newlist = "";
-    for (let z=0; z<obj.length; z++){
-        newlist+="<p>";
-        newlist+=obj[z];
-        newlist+="</p>";
+    try{
+        const commentResponse = await fetch(`http://127.0.0.1:8090/comments/${site}`);
+        const commentContent = await commentResponse.text();
+        let obj = JSON.parse(commentContent); 
+        let newlist = "";
+        for (let z=0; z<obj.length; z++){
+            newlist+="<p>";
+            newlist+=obj[z];
+            newlist+="</p>";
+        }
+        document.getElementById(locate).innerHTML = newlist;
     }
-    document.getElementById(locate).innerHTML = newlist;
+    catch(e){
+        alert(e);
+    }
 }
 
 
@@ -175,22 +189,27 @@ let comment = document.getElementById("comment_submit");
 comment.addEventListener('click', (event) => addComment())
 
 async function addComment () {
-
-    const site = document.getElementById('commentSite').value;
-    let name = document.getElementById('commentName').value;
-    const Body = document.getElementById('commentBody').value;
-    name += ": " + Body;
-    const data = {key:site, content:name};
-    const response = await fetch(`http://127.0.0.1:8090/addComment`,
-    {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json' 
-            },
-        body: JSON.stringify(data)
-    });
-    document.getElementById("afterComment").innerHTML=`Comment has been published!`;
+    try{
+        const site = document.getElementById('commentSite').value;
+        let name = document.getElementById('commentName').value;
+        const Body = document.getElementById('commentBody').value;
+        name += ": " + Body;
+        const data = {key:site, content:name};
+        const response = await fetch(`http://127.0.0.1:8090/addComment`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' 
+                },
+            body: JSON.stringify(data)
+        });
+        document.getElementById("afterComment").innerHTML=`Comment has been published!`;
+    }
+    catch (e) {
+        alert(e);
+    }
 };
    
 document.addEventListener('DOMContentLoaded', addButton); 
 document.addEventListener('DOMContentLoaded', sitesButton);
+

@@ -1,3 +1,7 @@
+.inHeader {
+  text-align: right;
+}
+
 .world_map {
     background: url("./world_map.jpg") repeat-x;
     background-size: 750px;

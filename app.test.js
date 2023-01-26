@@ -72,3 +72,4 @@ describe('Test the requests for sites', () => {
         .expect(/Giza Pyramids/);
     });
 });
+

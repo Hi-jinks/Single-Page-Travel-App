@@ -50,6 +50,7 @@ async function searchCountry(continent) {
         else if (continent=="Australia"){
             document.getElementById('auState').innerHTML = list;
         }
+        document.querySelectorAll("country_explain").innerHTML=`Look up a city in the Sites tab to see associated sites!`
     }
     catch(e) {
         alert(e);
